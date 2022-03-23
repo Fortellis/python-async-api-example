@@ -11,11 +11,11 @@ class EventHandler(FileSystemEventHandler):
     def on_modified(self, event):
         print(f'event type: {event.event_type}  path : {event.src_path}')
         with open('payload.json', 'r') as f:
-            lines = f.readlines()
-            print(json.dumps(lines, indent=4))
+            lines = json.load(f)
+            print(lines)
             response = requests.post(
                 '{yourWebhookURL}',
-                data = json.dumps(lines, indent=4),
+                json = lines,
                 headers= {
                     'Accept':'application/json',
                     'Cache-Control':'no-cache'
