@@ -14,7 +14,7 @@ class EventHandler(FileSystemEventHandler):
             lines = json.load(f)
             print(lines)
             response = requests.post(
-                '{yourWebhookURL}',
+                '{yourWebhookURL}/{yourChannel}',
                 json = lines,
                 headers= {
                     'Accept':'application/json',
